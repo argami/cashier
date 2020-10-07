@@ -28,11 +28,17 @@ RSpec.describe Checkout do
   describe 'required tests for evaluation' do
     before(:each) do
       pricing_rules = { 'GR1' => { price: 3.11,
-                                   rule: { min_quantity: 2, price: 3.11 } },
+                                   rule: { min_quantity: 2,
+                                           price_per: 2,
+                                           price: 3.11 } },
                         'SR1' => { price: 5.00,
-                                   rule: { min_quantity: 3, price: 13.50 } },
+                                   rule: { min_quantity: 3,
+                                           price_per: 1,
+                                           price: 4.50 } },
                         'CF1' => { price: 11.23,
-                                   rule: { min_quantity: 0, price: 0 } } }
+                                   rule: { min_quantity: 0,
+                                           price_per: 1,
+                                           price: 0 } } }
       @checkout = Checkout.new(pricing_rules)
     end
 

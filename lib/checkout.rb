@@ -19,8 +19,8 @@ class Checkout
     @cart.reduce(0) do |total, (item, quantity)|
       rule = @rules[item][:rule]
       if rule[:min_quantity].positive? && quantity >= rule[:min_quantity]
-        total += rule[:price] * (quantity / rule[:min_quantity]).floor
-        quantity = quantity % rule[:min_quantity]
+        total += rule[:price] * (quantity / rule[:price_per]).floor
+        quantity = quantity % rule[:price_per]
       end
       total + @rules[item][:price] * quantity
     end
