@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class Checkout
   def initialize(rules = [])
     @rules = rules
     @items = []
-    @cart = {} 
-    
+    @cart = {}
+
     # group quantity set to 0
-    rules.each { |rule| @cart[rule[0]] = 0 } 
+    rules.each { |rule| @cart[rule[0]] = 0 }
   end
 
   def scan(barcode)
@@ -15,7 +17,12 @@ class Checkout
 
   def total
     @cart.reduce(0) do |total, (item, quantity)|
-      total += @rules[item][:price] * quantity 
+      rule = @rules[item][:rule]
+      if rule[:min_quantity].positive? && quantity >= rule[:min_quantity]
+        total += rule[:price] * (quantity / rule[:min_quantity]).floor
+        quantity = quantity % rule[:min_quantity]
+      end
+      total + @rules[item][:price] * quantity
     end
-  end  
+  end
 end
