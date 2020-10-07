@@ -55,5 +55,12 @@ RSpec.describe Checkout do
       %w[GR1 CF1 SR1 CF1 CF1].each { |product| @checkout.scan(product) }
       expect(@checkout.total).to eq 30.57
     end
+
+    # More needed tests
+
+    it 'returns 16.61' do
+      %w[SR1 SR1 SR1 SR1].each { |product| @checkout.scan(product) }
+      expect(@checkout.total).to eq 18
+    end
   end
 end
