@@ -2,7 +2,7 @@
 
 class Checkout
   def initialize(rules = {})
-    raise RulesEmptyError if rules.empty?
+    raise Errors::RulesEmptyError if rules.empty?
 
     @rules = rules
     @items = []
@@ -13,7 +13,7 @@ class Checkout
   end
 
   def scan(barcode)
-    raise ProductNotFoundError unless @rules.keys.include?(barcode)
+    raise Errors::ProductNotFoundError unless @rules.keys.include?(barcode)
 
     @items << barcode
     @cart[barcode] += 1

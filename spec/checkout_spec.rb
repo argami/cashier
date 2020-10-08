@@ -1,6 +1,5 @@
 # frozen_string_literal: true
-require 'rules_empty_error.rb'
-require 'product_not_found_error.rb'
+require 'errors.rb'
 require 'checkout.rb'
 
 RSpec.describe Checkout do
@@ -30,12 +29,12 @@ RSpec.describe Checkout do
 
   describe 'validations' do
     it 'fails without rules' do
-      expect { Checkout.new({}) }.to raise_error(RulesEmptyError)
+      expect { Checkout.new({}) }.to raise_error(Errors::RulesEmptyError)
     end
 
     it 'fails trying to add a wrong product' do
       co = Checkout.new(@pricing_rules)
-      expect { co.scan('GR2') }.to raise_error(ProductNotFoundError)
+      expect { co.scan('GR2') }.to raise_error(Errors::ProductNotFoundError)
     end
   end
 

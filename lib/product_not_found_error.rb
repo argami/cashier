@@ -1,1 +1,0 @@
-class ProductNotFoundError < StandardError; end
