@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Checkout
-  def initialize(rules = {})
+  def initialize(rules = [])
+    raise Errors::RulesEmptyError if rules.empty?
+
     @rules = validate_rules(rules)
     @items = []
     @cart = {}
@@ -26,25 +28,5 @@ class Checkout
       end
       total + @rules[item][:price] * quantity
     end.floor(2)
-  end
-
-  private
-
-  def validate_rules(rules)
-    raise Errors::RulesEmptyError if rules.empty?
-
-    rules.each do |_, value|
-      value[:rule] =  { min_quantity: 0,
-                        price_per: 1,
-                        price: 0 }.merge(Hash(value[:rule]))
-    end
-
-    invalid_product = rules.reduce(true) do |res, product|
-      (res && (!product[1][:price].nil? && product[1][:price].positive?))
-    end
-
-    raise Errors::ProductPriceError unless invalid_product
-
-    rules
   end
 end

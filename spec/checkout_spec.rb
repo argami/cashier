@@ -34,17 +34,7 @@ RSpec.describe Checkout do
 
   describe 'validations' do
     it 'fails without rules' do
-      expect { Checkout.new({}) }.to raise_error(Errors::RulesEmptyError)
-    end
-
-    it 'fails trying to add a wrong product' do
-      co = Checkout.new(@pricing_rules)
-      expect { co.scan('GR2') }.to raise_error(Errors::ProductNotFoundError)
-    end
-
-    it 'fails if product price is not informed' do
-      @pricing_rules['GR1'].delete(:price)
-      expect { Checkout.new(@pricing_rules) }.to raise_error(Errors::ProductPriceError)
+      expect { Checkout.new([]) }.to raise_error(Errors::RulesEmptyError)
     end
   end
 
@@ -85,7 +75,7 @@ RSpec.describe Checkout do
       expect(@checkout.total).to eq 30.57
     end
 
-    # More needed tests
+    # More tests needed
 
     it 'returns 18' do
       %w[SR1 SR1 SR1 SR1].each { |product| @checkout.scan(product) }
