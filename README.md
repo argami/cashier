@@ -1,6 +1,7 @@
 # cashier [![Build Status](https://travis-ci.com/argami/cashier.svg?branch=main)](https://travis-ci.com/argami/cashier)
 cashier kata
 
+## Description
 
 ### Pricing rules (in MVP)
 
