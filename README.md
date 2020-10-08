@@ -8,4 +8,4 @@ Is a hash, where keys are the barcode of the product
 
 { 'GR1' => { 
     price: 3.11,
-    rule: { min_quantity: 0, discount: 0 } } }
+    rule: { min_quantity: 3, price_per: 1, price: 11.23 / 3 * 2 } } }
