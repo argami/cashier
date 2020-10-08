@@ -29,3 +29,10 @@ rule.price || 0 | this is the applied per (price_per) X products.
 - [x] validate rules formating and set up default values
 - [ ] when apply rule price, total price can't be lower than 0
 - [x] test cart without products shouldn't fail
+- [x] refactor rule
+- [x] refactor product
+- [ ] create a rules manager
+- [ ] create a cart
+- [ ] needs a Rule#apply
+- [ ] in rules should be unique products (related with rules manager)
+- [ ] extract the products and rule validation errors to its own error type

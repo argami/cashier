@@ -15,6 +15,7 @@ RSpec.describe Rule do
       expect(rule.minimun).to eq 0
       expect(rule.per).to eq 1
       expect(rule.price).to eq @product.price
+      expect(rule.active?).to be_falsey
     end
 
     it 'should set up the defaults values ' do
@@ -23,6 +24,7 @@ RSpec.describe Rule do
       expect(rule.minimun).to eq 2
       expect(rule.per).to eq 2
       expect(rule.price).to eq 4.11
+      expect(rule.active?).to be_truthy
     end
   end
 end

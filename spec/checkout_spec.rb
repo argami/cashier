@@ -1,16 +1,17 @@
 # frozen_string_literal: true
+
+require 'rule.rb'
+require 'product.rb'
 require 'errors.rb'
 require 'checkout.rb'
 
 RSpec.describe Checkout do
   before(:each) do
-    @pricing_rules = { 'GR1' => { price: 3.11,
-                                  rule: { min_quantity: 0,
-                                          price_per: 1,
-                                          price: 3.11 } } }
+    gr1 = Product.new('GR1', 3.11)
+    @pricing_rules = [Rule.new(gr1)]
   end
 
-  describe 'simple transaction' do
+  describe 'simple transaction', :focus => true do
     context 'without pricing_rules' do
       it 'returns total of £3.11' do
         co = Checkout.new(@pricing_rules)
@@ -40,18 +41,14 @@ RSpec.describe Checkout do
 
   describe 'required tests for evaluation' do
     before(:each) do
-      pricing_rules = { 'GR1' => { price: 3.11,
-                                   rule: { min_quantity: 2,
-                                           price_per: 2,
-                                           price: 3.11 } },
-                        'SR1' => { price: 5.00,
-                                   rule: { min_quantity: 3,
-                                           price_per: 1,
-                                           price: 4.50 } },
-                        'CF1' => { price: 11.23,
-                                   rule: { min_quantity: 3,
-                                           price_per: 1,
-                                           price: 11.23 / 3 * 2 } } }
+      gr1 = Product.new('GR1', 3.11)
+      sr1 = Product.new('SR1', 5.00)
+      cf1 = Product.new('CF1', 11.23)
+      pricing_rules = [
+        Rule.new(gr1, minimun: 2, per: 2, price: 3.11),
+        Rule.new(sr1, minimun: 3, per: 1, price: 4.50),
+        Rule.new(cf1, minimun: 3, per: 1, price: 11.23 / 3 * 2)
+      ]
       @checkout = Checkout.new(pricing_rules)
     end
 

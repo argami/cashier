@@ -16,4 +16,8 @@ class Rule
   def code
     product.code
   end
+
+  def active?
+    minimun.positive?
+  end
 end
