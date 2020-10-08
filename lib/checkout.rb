@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Checkout
-  def initialize(rules = [])
+  def initialize(rules = {})
+    raise RulesEmptyError if rules.empty?
+
     @rules = rules
     @items = []
     @cart = {}

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'rules_empty_error.rb'
 require 'checkout.rb'
 
 RSpec.describe Checkout do
@@ -23,6 +23,12 @@ RSpec.describe Checkout do
         expect(co.total).to eq 6.22
       end
     end
+  end
+
+  describe 'validations' do
+    it 'fails without rules' do
+      expect{ Checkout.new({}) }.to raise_error(RulesEmptyError)
+    end      
   end
 
   describe 'required tests for evaluation' do

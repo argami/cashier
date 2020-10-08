@@ -1,0 +1,1 @@
+class RulesEmptyError < StandardError; end
