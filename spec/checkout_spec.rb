@@ -24,6 +24,11 @@ RSpec.describe Checkout do
         co.scan('GR1')
         expect(co.total).to eq 6.22
       end
+
+      it 'returns 0.00' do
+        co = Checkout.new(@pricing_rules)
+        expect(co.total).to eq 0.00
+      end
     end
   end
 

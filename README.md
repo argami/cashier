@@ -23,9 +23,9 @@ rule.min_quantity || 0 | minimun quantity of products to apply rule. if is 0 rul
 rule.price_per || 1 | the rule price should be applied per X amount of products
 rule.price || 0 | this is the applied per (price_per) X products.
 
-
 # TODO
 
 - [x] product price is required and has to be a positive value
 - [x] validate rules formating and set up default values
 - [ ] when apply rule price, total price can't be lower than 0
+- [x] test cart without products shouldn't fail
