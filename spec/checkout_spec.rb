@@ -36,6 +36,11 @@ RSpec.describe Checkout do
       co = Checkout.new(@pricing_rules)
       expect { co.scan('GR2') }.to raise_error(Errors::ProductNotFoundError)
     end
+
+    it 'fails if product price is not informed' do
+      @pricing_rules['GR1'].delete(:price)
+      expect { Checkout.new(@pricing_rules) }.to raise_error(Errors::ProductPriceError)
+    end
   end
 
   describe 'required tests for evaluation' do
