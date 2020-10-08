@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 require 'rules_empty_error.rb'
+require 'product_not_found_error.rb'
 require 'checkout.rb'
 
 RSpec.describe Checkout do
-  describe 'simple transaction' do
-    before(:each) do
-      @pricing_rules = { 'GR1' => { price: 3.11,
-                                    rule: { min_quantity: 0, discount: 0 } } }
-    end
+  before(:each) do
+    @pricing_rules = { 'GR1' => { price: 3.11,
+                                  rule: { min_quantity: 0, discount: 0 } } }
+  end
 
+  describe 'simple transaction' do
     context 'without pricing_rules' do
       it 'returns total of £3.11' do
         co = Checkout.new(@pricing_rules)
@@ -27,8 +28,13 @@ RSpec.describe Checkout do
 
   describe 'validations' do
     it 'fails without rules' do
-      expect{ Checkout.new({}) }.to raise_error(RulesEmptyError)
-    end      
+      expect { Checkout.new({}) }.to raise_error(RulesEmptyError)
+    end
+
+    it 'fails trying to add a wrong product' do
+      co = Checkout.new(@pricing_rules)
+      expect { co.scan('GR2') }.to raise_error(ProductNotFoundError)
+    end
   end
 
   describe 'required tests for evaluation' do

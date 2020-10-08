@@ -13,6 +13,8 @@ class Checkout
   end
 
   def scan(barcode)
+    raise ProductNotFoundError unless @rules.keys.include?(barcode)  
+
     @items << barcode
     @cart[barcode] += 1
   end
