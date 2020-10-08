@@ -6,7 +6,9 @@ require 'checkout.rb'
 RSpec.describe Checkout do
   before(:each) do
     @pricing_rules = { 'GR1' => { price: 3.11,
-                                  rule: { min_quantity: 0, discount: 0 } } }
+                                  rule: { min_quantity: 0,
+                                          price_per: 1,
+                                          price: 3.11 } } }
   end
 
   describe 'simple transaction' do
