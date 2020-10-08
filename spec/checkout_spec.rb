@@ -36,9 +36,9 @@ RSpec.describe Checkout do
                                            price_per: 1,
                                            price: 4.50 } },
                         'CF1' => { price: 11.23,
-                                   rule: { min_quantity: 0,
+                                   rule: { min_quantity: 3,
                                            price_per: 1,
-                                           price: 0 } } }
+                                           price: 11.23 / 3 * 2 } } }
       @checkout = Checkout.new(pricing_rules)
     end
 
@@ -64,9 +64,19 @@ RSpec.describe Checkout do
 
     # More needed tests
 
-    it 'returns 16.61' do
+    it 'returns 18' do
       %w[SR1 SR1 SR1 SR1].each { |product| @checkout.scan(product) }
       expect(@checkout.total).to eq 18
+    end
+
+    it 'returns 30.57' do
+      %w[CF1 CF1 CF1 CF1 CF1].each { |product| @checkout.scan(product) }
+      expect(@checkout.total).to eq 37.43
+    end
+
+    it 'returns 30.57' do
+      %w[CF1 CF1 CF1 CF1 CF1 CF1 CF1 CF1 CF1 CF1].each { |product| @checkout.scan(product) }
+      expect(@checkout.total).to eq 74.86
     end
   end
 end

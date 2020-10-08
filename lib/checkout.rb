@@ -23,6 +23,6 @@ class Checkout
         quantity = quantity % rule[:price_per]
       end
       total + @rules[item][:price] * quantity
-    end
+    end.floor(2)
   end
 end
