@@ -3,25 +3,14 @@ cashier kata
 
 ## Description
 
-This is what i will call a MVP version of this task, this is the most simpler way to do it.
+To this evaluation i have 2 versions:
 
-### Pricing rules (in MVP)
+- [Main](https://github.com/argami/cashier) branch is the more "complex" version 
+- [MVP](https://github.com/argami/cashier/tree/MVP) branch is the more simpler version of the same.
 
-```ruby
-    { 'GR1' => { 
-                price: 3.11,
-                rule: { min_quantity: 3, 
-                        price_per: 1, 
-                        price: 11.23 / 3 * 2 } } }
-```
+In both versions all the tests checks out. (Its all tested in travis, and code validated with Codacy) 
 
-KEY | Required | Default | Description
------------- | ------------ | ------------ | -------------
-price | x | | normal price of the product
-rule | | {} | rule to apply to the product
-rule.min_quantity || 0 | minimun quantity of products to apply rule. if is 0 rule is disabled
-rule.price_per || 1 | the rule price should be applied per X amount of products
-rule.price || 0 | this is the applied per (price_per) X products.
+I did some assumptions on how things should be constructed. I also avoid the use of gems. The only ones used are related with the testing framework. 
 
 # TODO
 
@@ -32,9 +21,9 @@ rule.price || 0 | this is the applied per (price_per) X products.
 - [x] refactor rule
 - [x] refactor product
 - [x] create a rules manager
-- [ ] create a cart (no needed yet)
 - [x] needs a Rule#apply
 - [x] in rules should be unique products (related with rules manager)
-- [ ] extract the products and rule validation errors to its own error type
-- [ ] update readme
+- [x] update readme
 - [ ] should test Rules#each
+- [ ] create a cart (no needed yet complexity is too low)
+- [ ] extract the products and rule validation errors to its own error type

@@ -16,6 +16,7 @@ class Rules
 
   def add(rule)
     raise StandardError.new('only one rule per product') if self.exists?(rule)
+    
     @rules << rule
   end
 
