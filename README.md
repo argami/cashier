@@ -31,8 +31,10 @@ rule.price || 0 | this is the applied per (price_per) X products.
 - [x] test cart without products shouldn't fail
 - [x] refactor rule
 - [x] refactor product
-- [ ] create a rules manager
+- [x] create a rules manager
 - [ ] create a cart
 - [x] needs a Rule#apply
-- [ ] in rules should be unique products (related with rules manager)
+- [x] in rules should be unique products (related with rules manager)
 - [ ] extract the products and rule validation errors to its own error type
+- [ ] update readme
+- [ ] should test Rules#each
