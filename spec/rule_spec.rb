@@ -27,4 +27,16 @@ RSpec.describe Rule do
       expect(rule.active?).to be_truthy
     end
   end
+
+  describe '#apply' do
+    it 'returns the total (6.22) without applying the rule' do
+      rule = Rule.new @product, minimun: 0, per: 2, price: 3.11
+      expect(rule.apply(quantity: 2)).to eq 6.22
+    end
+
+    it 'apply the rule and return 3.11' do
+      rule = Rule.new @product, minimun: 2, per: 2, price: 3.11
+      expect(rule.apply(quantity: 2)).to eq 3.11
+    end
+  end
 end

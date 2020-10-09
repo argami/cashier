@@ -20,4 +20,15 @@ class Rule
   def active?
     minimun.positive?
   end
+
+  def apply(quantity: 0)
+    total = 0
+
+    if active? && quantity >= minimun
+      total += price * (quantity / per).floor
+      quantity = quantity % per
+    end
+
+    total + product.price * quantity
+  end
 end
