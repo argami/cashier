@@ -2,7 +2,7 @@
 
 class Checkout
   def initialize(rules = [])
-    raise Errors::RulesEmptyError if rules.empty?
+    raise Errors::RulesEmptyError if rules.count.zero?
 
     @rules = rules
     @items = []
@@ -13,7 +13,7 @@ class Checkout
   end
 
   def scan(barcode)
-    raise Errors::ProductNotFoundError unless @rules.map(&:code).include?(barcode)
+    raise Errors::ProductNotFoundError unless @rules.find(barcode)
 
     @items << barcode
     @cart[barcode] += 1
@@ -21,7 +21,7 @@ class Checkout
 
   def total
     @cart.reduce(0) do |total, (item, quantity)|
-      rule = @rules.find { |r| r.code == item }
+      rule = @rules.find(item)
       total + rule.apply(quantity: quantity)
     end.floor(2)
   end

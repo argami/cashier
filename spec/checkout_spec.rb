@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rule.rb'
+require 'rules.rb'
 require 'product.rb'
 require 'errors.rb'
 require 'checkout.rb'
@@ -8,27 +9,34 @@ require 'checkout.rb'
 RSpec.describe Checkout do
   before(:each) do
     gr1 = Product.new('GR1', 3.11)
-    @pricing_rules = [Rule.new(gr1)]
+    sr1 = Product.new('SR1', 5.00)
+    cf1 = Product.new('CF1', 11.23)
+    gr2 = Product.new('GR2', 3.11)
+    pricing_rules = Rules.new
+    [
+      Rule.new(gr1, minimun: 2, per: 2, price: 3.11),
+      Rule.new(sr1, minimun: 3, per: 1, price: 4.50),
+      Rule.new(cf1, minimun: 3, per: 1, price: 11.23 / 3 * 2),
+      Rule.new(gr2),
+    ].each { |r| pricing_rules.add(r) }
+    @checkout = Checkout.new(pricing_rules)
   end
 
   describe 'simple transaction' do
     context 'without pricing_rules' do
       it 'returns total of £3.11' do
-        co = Checkout.new(@pricing_rules)
-        co.scan('GR1')
-        expect(co.total).to eq 3.11
+        @checkout.scan('GR2')
+        expect(@checkout.total).to eq 3.11
       end
 
       it 'returns total of £6.22' do
-        co = Checkout.new(@pricing_rules)
-        co.scan('GR1')
-        co.scan('GR1')
-        expect(co.total).to eq 6.22
+        @checkout.scan('GR2')
+        @checkout.scan('GR2')
+        expect(@checkout.total).to eq 6.22
       end
 
       it 'returns 0.00' do
-        co = Checkout.new(@pricing_rules)
-        expect(co.total).to eq 0.00
+        expect(@checkout.total).to eq 0.00
       end
     end
   end
@@ -40,18 +48,6 @@ RSpec.describe Checkout do
   end
 
   describe 'required tests for evaluation' do
-    before(:each) do
-      gr1 = Product.new('GR1', 3.11)
-      sr1 = Product.new('SR1', 5.00)
-      cf1 = Product.new('CF1', 11.23)
-      pricing_rules = [
-        Rule.new(gr1, minimun: 2, per: 2, price: 3.11),
-        Rule.new(sr1, minimun: 3, per: 1, price: 4.50),
-        Rule.new(cf1, minimun: 3, per: 1, price: 11.23 / 3 * 2)
-      ]
-      @checkout = Checkout.new(pricing_rules)
-    end
-
     it 'returns 22.45' do
       %w[GR1 SR1 GR1 GR1 CF1].each { |product| @checkout.scan(product) }
       expect(@checkout.total).to eq 22.45
