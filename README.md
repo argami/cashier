@@ -33,6 +33,6 @@ rule.price || 0 | this is the applied per (price_per) X products.
 - [x] refactor product
 - [ ] create a rules manager
 - [ ] create a cart
-- [ ] needs a Rule#apply
+- [x] needs a Rule#apply
 - [ ] in rules should be unique products (related with rules manager)
 - [ ] extract the products and rule validation errors to its own error type
