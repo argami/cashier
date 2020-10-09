@@ -1,4 +1,4 @@
-# cashier [![Build Status](https://travis-ci.com/argami/cashier.svg?branch=main)](https://travis-ci.com/argami/cashier)
+# cashier [![Build Status](https://travis-ci.com/argami/cashier.svg?branch=main)](https://travis-ci.com/argami/cashier) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/3d38e40e3fb649f18b713a8e5e6adbf7)](https://www.codacy.com/gh/argami/cashier/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=argami/cashier&amp;utm_campaign=Badge_Grade)
 cashier kata
 
 ## Description
