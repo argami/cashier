@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e70c8ac042ae44e79b435ab8f80bf58b)](https://app.codacy.com/gh/argami/cashier?utm_source=github.com&utm_medium=referral&utm_content=argami/cashier&utm_campaign=Badge_Grade)
 # cashier [![Build Status](https://travis-ci.com/argami/cashier.svg?branch=main)](https://travis-ci.com/argami/cashier)
 cashier kata
 
