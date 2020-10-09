@@ -11,7 +11,7 @@ RSpec.describe Checkout do
     @pricing_rules = [Rule.new(gr1)]
   end
 
-  describe 'simple transaction', :focus => true do
+  describe 'simple transaction' do
     context 'without pricing_rules' do
       it 'returns total of £3.11' do
         co = Checkout.new(@pricing_rules)

@@ -22,11 +22,7 @@ class Checkout
   def total
     @cart.reduce(0) do |total, (item, quantity)|
       rule = @rules.find { |r| r.code == item }
-      if rule.active? && quantity >= rule.minimun
-        total += rule.price * (quantity / rule.per).floor
-        quantity = quantity % rule.per
-      end
-      total + rule.product.price * quantity
+      total + rule.apply(quantity: quantity)
     end.floor(2)
   end
 end
