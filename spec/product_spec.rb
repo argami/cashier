@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'product.rb'
+require 'product'
 
 RSpec.describe Product do
   describe '#new' do

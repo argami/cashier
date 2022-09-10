@@ -7,8 +7,8 @@ class Rule
     # the price of the rule should be the same of
     # the product in case it wasn't informed
     self.price = price || product.price
-    raise ArgumentError.new('price should be a positive number') if self.price.negative?
-    
+    raise ArgumentError, 'price should be a positive number' if self.price.negative?
+
     self.product = product
     self.minimun = minimun
     self.per = per
@@ -30,6 +30,6 @@ class Rule
       quantity = quantity % per
     end
 
-    total + product.price * quantity
+    total + (product.price * quantity)
   end
 end

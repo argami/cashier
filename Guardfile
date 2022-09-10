@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
@@ -19,5 +21,5 @@
 #   watch(%r{file/path}) { `command(s)` }
 #
 guard :shell do
-  watch(%r{^*\.rb}) { `bundle exec rspec --force-color spec/` }
+  watch(/^*\.rb/) { `bundle exec rspec --force-color spec/` }
 end
