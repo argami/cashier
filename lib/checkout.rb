@@ -22,7 +22,7 @@ class Checkout
   def total
     @cart.reduce(0) do |total, (item, quantity)|
       rule = @rules.find(item)
-      total + rule.apply(quantity: quantity)
+      total + rule.apply(quantity:)
     end.floor(2)
   end
 end

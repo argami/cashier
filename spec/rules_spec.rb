@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'product.rb'
-require 'rule.rb'
-require 'rules.rb'
+require 'product'
+require 'rule'
+require 'rules'
 
 RSpec.describe Rules do
   before(:each) do
@@ -33,7 +33,7 @@ RSpec.describe Rules do
     end
   end
 
-  describe '#find' do 
+  describe '#find' do
     before(:each) do
       @rules = Rules.new
       @rules.add(@rule)

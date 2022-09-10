@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'product.rb'
-require 'rule.rb'
+require 'product'
+require 'rule'
 
 RSpec.describe Rule do
   before(:each) do

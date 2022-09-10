@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'rule.rb'
-require 'rules.rb'
-require 'product.rb'
-require 'errors.rb'
-require 'checkout.rb'
+require 'rule'
+require 'rules'
+require 'product'
+require 'errors'
+require 'checkout'
 
 RSpec.describe Checkout do
   before(:each) do
@@ -17,7 +17,7 @@ RSpec.describe Checkout do
       Rule.new(gr1, minimun: 2, per: 2, price: 3.11),
       Rule.new(sr1, minimun: 3, per: 1, price: 4.50),
       Rule.new(cf1, minimun: 3, per: 1, price: 11.23 / 3 * 2),
-      Rule.new(gr2),
+      Rule.new(gr2)
     ].each { |r| pricing_rules.add(r) }
     @checkout = Checkout.new(pricing_rules)
   end
